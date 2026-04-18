@@ -1,0 +1,87 @@
+//
+//  ViewValues.swift
+//  Expense Tracker
+//
+//  Created by Aryan Verma on 31/03/26.
+//
+
+import SwiftUI
+
+struct FontT {
+    static let primary: CGFloat = UIFontMetrics(forTextStyle: .body).scaledValue(for: 12)
+    static let secondary: CGFloat = UIFontMetrics(forTextStyle: .title2).scaledValue(for: 18)
+    static let title: CGFloat = UIFontMetrics(forTextStyle: .largeTitle).scaledValue(for: 30)
+    static let amount: CGFloat = UIFontMetrics(forTextStyle: .largeTitle).scaledValue(for: 48)
+}
+
+enum ButtonT {
+    struct IconPaddingT {
+        static let small: CGFloat = 5
+        static let medium: CGFloat = 10
+        static let large: CGFloat = 20
+    }
+    
+    struct WidthT {
+        static let infinite: CGFloat = .infinity
+        static let medium: CGFloat = 60
+        static let large: CGFloat = 80
+        static let small: CGFloat = 40
+    }
+    
+    struct HeightT {
+        static let medium: CGFloat = 60
+        static let large: CGFloat = 80
+        static let small: CGFloat = 40
+    }
+}
+  
+struct ShadowT {
+    static let shadow: CGFloat = 8
+    static let positionX: CGFloat = 8
+    static let positionY: CGFloat = -8
+}
+
+enum CardT {
+    
+    struct MaterialT {
+        static let thin: Material = .ultraThinMaterial
+        static let regular: Material = .regularMaterial
+        
+    }
+    
+    struct HeightT {
+        static let small: CGFloat = 60
+        static let higherSmall: CGFloat = 80
+        static let lowerMedium: CGFloat = 100
+        static let medium: CGFloat = 120
+        static let large: CGFloat = 180
+    }
+    
+    struct WidthT {
+        static let small: CGFloat = 60
+        static let higherSmall: CGFloat = 80
+        static let lowerMedium: CGFloat = 100
+        static let mediumW: CGFloat = 120
+        static let largeW: CGFloat = .infinity
+    }
+    
+    struct RadiusOrPaddigT {
+        static let radius: CGFloat = 30
+        static let IconPad: CGFloat = 18
+    }
+    
+}
+
+struct GetColor {
+    static let white =  Color.white
+    static let black = Color.black
+    static let accent = Color.accentColor
+    static let primary = Color.primary
+    static let green = Color(UIColor.systemGreen)
+    static let sysBack = Color(UIColor.systemBackground)
+    static let sysGray = Color(UIColor.systemGray6)
+    static let grayStatic = Color.gray
+    static let clear = Color.clear
+}
+
+

@@ -6,8 +6,7 @@
 //
 
 
-
-/// Error Collection
+// MARK: - ErrorCollection
 enum APIError: Error {
     case featureDisabled(String)
     case invalidURL

@@ -62,3 +62,5 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 APIKey.swift
 CipherTick app/API-Key.swift
+CipherTick app/API/Services/ControlRoom/APIKey.swift
+CipherTick app/API/Services/ControlRoom/APIKey.swift

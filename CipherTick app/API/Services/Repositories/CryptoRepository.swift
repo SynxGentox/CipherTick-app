@@ -7,10 +7,12 @@
 
 import Foundation
 
+// MARK: - Repository Protocol
 protocol CryptoRepository {
     func fetch() async throws -> [Coin]
 }
 
+// MARK: - Respository & URL Sharing
 final class CryptoRepositoryImpl: CryptoRepository {
     private let network: NetworkServiceProtocol
     

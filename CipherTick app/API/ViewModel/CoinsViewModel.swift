@@ -12,7 +12,7 @@ import Observation
 @MainActor
 final class CoinsViewModel {
     var coins: [Coin] = []
-    var appState: AppState = .isLoading
+    var appState: NetworkState = .isLoading
     var error: APIError?
     private let repository: CryptoRepository
     
@@ -26,18 +26,14 @@ final class CoinsViewModel {
         appState = .isLoading
         do {
             let result = try await repository.fetch()
-            if result.first?.id == nil {
-                appState = .isEmpty {
-                    Task { await self.fetch() }
-                }
+            if result.isEmpty {
+                appState = .isEmpty
             } else {
                 coins = result
                 appState = .isSuccess
             }
         } catch {
-            appState = .isError(error) {
-                Task { await self.fetch() }
-            }
+            appState = .isError(error.localizedDescription)
         }
     }
 }

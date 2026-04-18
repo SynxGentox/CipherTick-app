@@ -12,8 +12,13 @@ enum URLConstructor {
     
     /// holds the bases url either
     private static var baseURL: String {
-        APIConfig.shared.isPremium ?
-        "https://pro-api.coingecko.com/api/v3" : "https://api.coingecko.com/api/v3"
+        if APIConfig.shared.useAPIKey {
+            if APIConfig.shared.isPremium {
+                return UrlFor.premium
+            }
+            return UrlFor.demo
+        }
+        return UrlFor.demo
     }
     
     

@@ -19,13 +19,13 @@ final class APIConfig {
     var isPremium = false
     
     // FeatrudFlag - Once per endpoint namespace
-    var isEnabledCoin =     true            // always on Core feeature
-    var isEnabledChart =    false
-    var isEnabledCategory = false
-    var isEnabledNFT =      false
-    var isEnabledSearch =   false
-    var isEnabledGlobal =  false
-    var isEnabledOnChange = false
-    var isEnabledExchange = false
-    var isEnabledTreasury = false
+    var isEnabledCoin       = true            // always on Core feeature
+    var isEnabledChart      = false
+    var isEnabledCategory   = false
+    var isEnabledNFT        = false
+    var isEnabledSearch     = false
+    var isEnabledGlobal     = false
+    var isEnabledOnChange   = false
+    var isEnabledExchange   = false
+    var isEnabledTreasury   = false
 }
