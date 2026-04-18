@@ -15,8 +15,8 @@ final class APIConfig {
     private init() {}
     
     //API key Control
-    var useAPIKey = false
-    var isPremium = false
+    var useAPIKey = false       //Enable to use APIKey
+    var isPremium = false       //Enable this if your key is Premium ?? demoKey
     
     // FeatrudFlag - Once per endpoint namespace
     var isEnabledCoin       = true            // always on Core feeature

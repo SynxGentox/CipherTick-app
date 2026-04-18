@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct FontT {
-    static let primary: CGFloat = UIFontMetrics(forTextStyle: .body).scaledValue(for: 12)
-    static let secondary: CGFloat = UIFontMetrics(forTextStyle: .title2).scaledValue(for: 18)
+    static let secondary: CGFloat = UIFontMetrics(forTextStyle: .body).scaledValue(for: 14)
+    static let primary: CGFloat = UIFontMetrics(forTextStyle: .title2).scaledValue(for: 18)
     static let title: CGFloat = UIFontMetrics(forTextStyle: .largeTitle).scaledValue(for: 30)
     static let amount: CGFloat = UIFontMetrics(forTextStyle: .largeTitle).scaledValue(for: 48)
 }
@@ -18,7 +18,7 @@ enum ButtonT {
     struct IconPaddingT {
         static let small: CGFloat = 5
         static let medium: CGFloat = 10
-        static let large: CGFloat = 20
+        static let large: CGFloat = 15
     }
     
     struct WidthT {
@@ -55,19 +55,23 @@ enum CardT {
         static let lowerMedium: CGFloat = 100
         static let medium: CGFloat = 120
         static let large: CGFloat = 180
+        static let xLarge: CGFloat = 270
+        static let infinity: CGFloat = .infinity
     }
     
     struct WidthT {
         static let small: CGFloat = 60
         static let higherSmall: CGFloat = 80
         static let lowerMedium: CGFloat = 100
-        static let mediumW: CGFloat = 120
-        static let largeW: CGFloat = .infinity
+        static let medium: CGFloat = 120
+        static let large: CGFloat = 180
+        static let infinity: CGFloat = .infinity
     }
     
-    struct RadiusOrPaddigT {
-        static let radius: CGFloat = 30
-        static let IconPad: CGFloat = 18
+    struct RadiusOrPaddingT {
+        static let smoothRadius: CGFloat = 30
+        static let sharpRadius: CGFloat = 8
+        static let padding: CGFloat = 18
     }
     
 }
@@ -82,6 +86,10 @@ struct GetColor {
     static let sysGray = Color(UIColor.systemGray6)
     static let grayStatic = Color.gray
     static let clear = Color.clear
+    static let metallicGold = Color("metallicGold")
+    static let customBlack = Color("customBlack")
+    static let customGreen = Color("customGreen")
+    static let deepRed = Color("deepRed")
 }
 
 

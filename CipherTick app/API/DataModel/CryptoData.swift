@@ -19,7 +19,7 @@ struct Coin: Decodable {
     let volume: Double?
     let marketCapRank: Int?
     let priceChange: Double?
-    let priceChangePercent: Double?
+    let changePercent: Double?
     let high24hr: Double?
     let low24hr: Double?
     let lastUpdated: String?
@@ -33,7 +33,7 @@ struct Coin: Decodable {
         case volume = "total_volume"
         case marketCapRank = "market_cap_rank"
         case priceChange = "price_change_24h"
-        case priceChangePercent = "price_change_percentage_24h"
+        case changePercent = "price_change_percentage_24h"
         case high24hr = "high_24h"
         case low24hr = "low_24h"
         case lastUpdated = "last_updated"

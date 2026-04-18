@@ -1,5 +1,5 @@
 //
-//  ButtonDIsHelper.swift
+//  PolymorphicStyle.swift
 //  Expense Tracker
 //
 //  Created by Aryan Verma on 01/04/26.
@@ -7,18 +7,7 @@
 
 import SwiftUI
 
-//protocol ButtonDisHelper {
-//    func isImage(from str: String) -> any View
-//}
-//
-//extension Text: ButtonDisHelper {
-//    public func isImage(from str: String) -> any View {
-//        Text(str)
-//    }
-//}
-
-
-struct PolymorphicButtonStyle: View {
+struct PolymorphicStyle: View {
     let isImage: String
     let infinite: Bool
     let alignLeft: Bool
@@ -29,6 +18,7 @@ struct PolymorphicButtonStyle: View {
     func isImage(str: String) -> some View {
         if UIImage(systemName: str) != nil {
             Image(systemName: str)
+            // Got to iconStyle.swift to edit the iconStyle
                 .iconStyle(
                     buttonHeight: ButtonT.HeightT.medium,
                     buttonWidth: infinite ? ButtonT.WidthT.infinite : ButtonT.WidthT.medium,
@@ -37,6 +27,7 @@ struct PolymorphicButtonStyle: View {
         }
         else if UIImage(named: str) != nil {
             Image(str)
+            // Got to iconStyle.swift to edit the iconStyle
                 .iconStyle(
                     buttonHeight: ButtonT.HeightT.medium,
                     buttonWidth: infinite ? ButtonT.WidthT.infinite : ButtonT.WidthT.medium,
@@ -45,9 +36,10 @@ struct PolymorphicButtonStyle: View {
         }
         else {
             Text(str)
-                .amountFontStyleExt(numSize: FontT.primary)
+            // Go to FontStyle.swift to change buttonStyle
+                .amountStyle(fontSize: FontT.primary)
                 .foregroundStyle(GetColor.accent)
-                .padding(ButtonT.IconPaddingT.medium)
+                .padding(ButtonT.IconPaddingT.large)
                 .frame(
                     maxWidth: infinite ? ButtonT.WidthT.infinite : ButtonT.WidthT.medium,
                     maxHeight: ButtonT.HeightT.small

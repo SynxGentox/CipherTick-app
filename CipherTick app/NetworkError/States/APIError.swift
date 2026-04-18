@@ -5,7 +5,6 @@
 //  Created by Aryan Verma on 16/04/26.
 //
 
-
 // MARK: - ErrorCollection
 enum APIError: Error {
     case featureDisabled(String)

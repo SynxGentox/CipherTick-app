@@ -18,7 +18,7 @@ struct PrimaryButton: View {
     var body: some View {
         VStack {
             Button(action: action) {
-                PolymorphicButtonStyle(
+                PolymorphicStyle(
                     isImage: buttonDisplay,
                     infinite: infinite,
                     alignLeft: alignLeft
@@ -40,7 +40,7 @@ struct PrimaryNavigationButton<Destination: View>: View {
     var body: some View {
         VStack {
             NavigationLink(value: id) {
-                PolymorphicButtonStyle(
+                PolymorphicStyle(
                     isImage: buttonDisplay,
                     infinite: infinite,
                     alignLeft: alignLeft

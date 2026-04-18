@@ -14,7 +14,9 @@ extension Image {
             .scaledToFit()
             .fontWeight(.regular)
             .foregroundStyle(iconColor)
+            .padding(ButtonT.IconPaddingT.medium)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignLeft ? .leading : .center)
             .frame(maxWidth: buttonWidth, maxHeight: buttonHeight)
     }
 }
+

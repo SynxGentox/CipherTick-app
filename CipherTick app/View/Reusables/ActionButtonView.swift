@@ -18,12 +18,14 @@ struct ActionButton: View {
     var body: some View {
         VStack {
             Button(action: action) {
-                PolymorphicButtonStyle(
+                // Got PolymorphiStyle.swift to check what button should display
+                PolymorphicStyle(
                     isImage: buttonDisplay,
                     infinite: infinite,
                     alignLeft: alignLeft
                 )
             }
+            // Go to buttonStyle.swift to check buttonStyle
             .buttonStyle(ActionButtonStyle(isSelected: isSelected))
         }
     }
@@ -41,7 +43,8 @@ struct ActionNavigationButton<Destination: View>: View {
     var body: some View {
         VStack {
             NavigationLink(value: id) {
-                PolymorphicButtonStyle(
+                // Got PolymorphiStyle.swift to check what button should display
+                PolymorphicStyle(
                     isImage: buttonDisplay,
                     infinite: infinite,
                     alignLeft: alignLeft
@@ -50,6 +53,7 @@ struct ActionNavigationButton<Destination: View>: View {
             .navigationDestination(for: String.self) { _ in
                 EmptyView()     //Your View
             }
+            // Go to buttonStyle.swift to check buttonStyle
             .buttonStyle(ActionButtonStyle(isSelected: isSelected))
             
         }

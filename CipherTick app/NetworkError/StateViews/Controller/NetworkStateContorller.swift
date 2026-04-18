@@ -1,5 +1,5 @@
 //
-//  NetworkStateContorller.swift
+//  NetworkStateController.swift
 //  Expense Tracker
 //
 //  Created by Aryan Verma on 11/04/26.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct NetworkStateContorller: View{
+struct NetworkStateController: View{
     let state: NetworkState
+    var onRetry: () -> Void
     
     var body: some View {
         switch state {
@@ -18,7 +19,7 @@ struct NetworkStateContorller: View{
                 VStack {
                     Spacer()
                     Button {
-                        
+                        onRetry()
                     } label: {
                         Image(systemName: "arrow.trianglehead.counterclockwise")
                             .resizable()
@@ -36,7 +37,7 @@ struct NetworkStateContorller: View{
                     VStack {
                         Spacer()
                         Button {
-                            
+                            onRetry()
                         } label: {
                             Image(systemName: "arrow.trianglehead.counterclockwise")
                                 .resizable()
@@ -58,6 +59,6 @@ struct NetworkStateContorller: View{
 
 
 #Preview {
-    NetworkStateContorller(state: .isError(""))
+    NetworkStateController(state: .isError(""), onRetry: {})
 }
 
