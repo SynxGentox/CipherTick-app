@@ -13,17 +13,23 @@ import Observation
 final class CoinsViewModel {
     var coins: [Coin] = []
     var appState: NetworkState = .isLoading
-    var error: APIError?
+    var error: APIError? = nil
     var searchText: String = ""
     private let repository: CryptoRepository
+    private var lastManualRefresh: Date? = nil
+    private var refreshInterval: TimeInterval {
+        APIConfig.shared.isKeyPremium ? APIConfig.shared.premiumKeyDelay : APIConfig.shared.demoKeyDelay
+    }
+    private var isFetching = false
     
-    init(error: APIError?, repository: CryptoRepository) {
-        self.error = error
+    init(repository: CryptoRepository) {
         self.repository = repository
     }
     
     func fetch() async {
-        appState = .isLoading
+        guard !isFetching else { return }
+        isFetching = true
+        if coins.isEmpty { appState = .isLoading}
         do {
             let result = try await repository.fetch()
             if result.isEmpty {
@@ -35,6 +41,16 @@ final class CoinsViewModel {
         } catch {
             appState = .isError(error.localizedDescription)
         }
+        isFetching = false
+    }
+    
+    func manualRefresh() async {
+        if let last = lastManualRefresh, Date.now.timeIntervalSince(last) < refreshInterval {
+            return
+        }
+        lastManualRefresh = .now
+        try? await Task.sleep(nanoseconds: 330_000_000)
+        await fetch()
     }
     
     var filteredItems: [Coin] {

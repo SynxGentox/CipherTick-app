@@ -37,14 +37,13 @@ struct ListItemView: View {
                 Spacer()
                 
                 VStack(alignment: .listRowSeparatorTrailing) {
-                    Text(coin.price ?? 0.00, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-                        .foregroundStyle( coin.changePercent ?? 0.00 >= 0 ? GetColor.metallicGold : GetColor.deepRed)
+                    Text((coin.price ?? 0.00), format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                        .foregroundStyle( (coin.changePercent ?? 0.00) >= 0 ? GetColor.metallicGold : GetColor.deepRed)
                         .amountStyle(fontSize: FontT.primary)
-                    Text((coin.changePercent ?? 0.00 >= 0 ? "+" : "")
+                    Text(((coin.changePercent ?? 0.00) >= 0 ? "+" : "")
                          + (coin.changePercent ?? 0.00).formatted(.number.precision(.fractionLength(2)))
                          + "%")
                         .secondaryStyle(fontSize: FontT.primary - 3)
-                    
                 }
                 
                 

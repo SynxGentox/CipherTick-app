@@ -22,7 +22,7 @@ struct PolymorphicStyle: View {
                 .iconStyle(
                     buttonHeight: ButtonT.HeightT.medium,
                     buttonWidth: infinite ? ButtonT.WidthT.infinite : ButtonT.WidthT.medium,
-                    iconColor: GetColor.accent, alignLeft: alignLeft
+                    iconColor: GetColor.metallicGold, alignLeft: alignLeft
                 )
         }
         else if UIImage(named: str) != nil {
@@ -31,7 +31,7 @@ struct PolymorphicStyle: View {
                 .iconStyle(
                     buttonHeight: ButtonT.HeightT.medium,
                     buttonWidth: infinite ? ButtonT.WidthT.infinite : ButtonT.WidthT.medium,
-                    iconColor: GetColor.accent, alignLeft: alignLeft
+                    iconColor: GetColor.metallicGold, alignLeft: alignLeft
                 )
         }
         else {

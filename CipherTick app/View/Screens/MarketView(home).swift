@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct MarketView: View {
-    let coins: [Coin]
+    let filteredCoin: [Coin]
+    @Binding var searchText: String
+    let doRefresh: () async -> Void
+    
     var body: some View {
         FeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
+            
             ZStack {
                 GetColor.customBlack
                 VStack{
@@ -24,7 +28,6 @@ struct MarketView: View {
                          height: CardT.HeightT.large,
                          color: GetColor.customGreen
                     )
-                    
                     ZStack {
                         Card(radius: CardT.RadiusOrPaddingT.smoothRadius,
                              width: CardT.WidthT.infinity,
@@ -34,14 +37,17 @@ struct MarketView: View {
                         ScrollView {
                             Spacer().frame(height: 60)
                             VStack {
-                                ItemListView(coin: coins)
+                                ItemListView(filteredCoin: filteredCoin)
                             }
                         }
                     }
                 }
-                
             }
             .ignoresSafeArea()
+            .searchable(text: $searchText, prompt: "Search coins, symbols...")
+            .refreshable {
+                await doRefresh()
+            }
         }
     }
 }
@@ -78,5 +84,9 @@ struct MarketView: View {
                             lastUpdated: "fs"
                           ))
     
-    MarketView(coins: dummyData)
+    MarketView(
+        filteredCoin: dummyData,
+        searchText: .constant("Searh coin,symbols..."),
+        doRefresh: {
+        })
 }

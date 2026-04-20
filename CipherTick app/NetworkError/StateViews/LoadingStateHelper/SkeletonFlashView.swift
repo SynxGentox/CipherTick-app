@@ -13,9 +13,9 @@ struct SkeletonFlashView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: value, style: .continuous)
-            .fill(.orange.opacity(0.6))   // color of flash
+            .fill(.white.opacity(0.6))   // color of flash
             .frame(maxWidth: size / 2,
-                   maxHeight: size * 1.3)
+                   maxHeight: size)
 //            .rotationEffect(Angle(degrees: angle))
             .blur(radius: value * 3)
             .offset(x: isAnimating ? -(size + size) : size + size)
@@ -30,7 +30,7 @@ struct SkeletonFlashView: View {
         10
     }
     var xSeconds: Double {
-        1.333
+        1.4
     }
     var value: CGFloat {
         8

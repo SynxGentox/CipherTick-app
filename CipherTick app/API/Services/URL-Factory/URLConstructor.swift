@@ -13,7 +13,7 @@ enum URLConstructor {
     /// holds the bases url either
     private static var baseURL: String {
         if APIConfig.shared.useAPIKey {
-            if APIConfig.shared.isPremium {
+            if APIConfig.shared.isKeyPremium {
                 return UrlFor.premium
             }
             return UrlFor.demo
@@ -25,7 +25,13 @@ enum URLConstructor {
     
     //URl-Constructor
     static func build(_ nameSpace: String) throws -> URL {
+        
+        guard APIConfig.shared.isAppWorking else {
+            throw APIError.featureDisabled("App")
+        }
+        
         let raw = baseURL + nameSpace
+        
         guard let url = URL(string: raw) else {
             throw URLError(.badURL)
         }

@@ -11,4 +11,5 @@ enum APIError: Error {
     case invalidURL
     case networkError(Int)
     case decodingError
+    case rateThrottled
 }

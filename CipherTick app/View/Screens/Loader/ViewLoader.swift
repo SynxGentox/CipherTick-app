@@ -8,19 +8,32 @@
 import SwiftUI
 
 struct ViewLoader: View {
-    @State private var viewModel = CoinsViewModel(error: nil, repository: CryptoRepositoryImpl())
+    @State private var viewModel = CoinsViewModel(repository: CryptoRepositoryImpl())
     var body: some View {
-        Group {
-            switch viewModel.appState {
-                case .isSuccess:
-                    MarketView(coins: viewModel.coins)
-                default:
-                    NetworkStateController(state: viewModel.appState) {
-                        Task { await viewModel.fetch() }
+        NetworkStateController(state: viewModel.appState) {
+                    Task { await viewModel.fetch() }
+                } success: {
+                    TabView {
+                        Tab("", systemImage: "coloncurrencysign.circle.fill") {
+                            NavigationStack {
+                                MarketView(filteredCoin: viewModel.filteredItems, searchText: $viewModel.searchText, doRefresh: doRefresh)
+                                    .navigationDestination(for: AppRoute.self) { route in
+                                        switch route {
+                                        case .coinDetail(let coin):
+                                            Text(coin.name) // placeholder
+                                        }
+                                    }
+                            }
+                        }
+                        Tab("", systemImage: "square.fill.on.circle.fill") {}
+                        Tab("", systemImage: "coloncurrencysign.bank.building.fill") {}
+                        Tab("", systemImage: "wallet.bifold.fill") {}
                     }
-            }
-        }
-        .task { await viewModel.fetch() }
+                }
+                .task { await viewModel.fetch() }
+    }
+    func doRefresh() async {
+        await viewModel.manualRefresh()
     }
 }
 

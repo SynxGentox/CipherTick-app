@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemListView: View {
-    let coin: [Coin]
+    let filteredCoin: [Coin]
     let filterItem = ["Trending", "Price", "Market Cap", "24h_change"]
     var body: some View {
         
@@ -24,13 +24,12 @@ struct ItemListView: View {
             Spacer()
         }
         .secondaryStyle(fontSize: FontT.secondary)
-        ForEach(coin, id: \.id) { coin in
+        ForEach(filteredCoin, id: \.id) { coin in
             ListItemView(coin: coin)
             Divider()
                 .padding(.horizontal, ButtonT.IconPaddingT.large)
         }
         .padding(.horizontal, ButtonT.IconPaddingT.small)
-        .background(.blue)
     }
 }
 
@@ -66,5 +65,5 @@ struct ItemListView: View {
                             lastUpdated: "fs"
                           ))
     
-    ItemListView(coin: dummyData)
+    ItemListView(filteredCoin: dummyData)
 }

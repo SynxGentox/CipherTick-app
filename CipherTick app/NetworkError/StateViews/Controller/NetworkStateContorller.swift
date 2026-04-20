@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct NetworkStateController: View{
+struct NetworkStateController<Success: View>: View{
     let state: NetworkState
     var onRetry: () -> Void
+    @ViewBuilder var success: () -> Success
     
     var body: some View {
         switch state {
@@ -18,16 +19,10 @@ struct NetworkStateController: View{
                 EmptyStateView()
                 VStack {
                     Spacer()
-                    Button {
+                    ActionButton(buttonDisplay: "arrow.trianglehead.counterclockwise.icloud.fill", infinite: false, alignLeft: false) {
                         onRetry()
-                    } label: {
-                        Image(systemName: "arrow.trianglehead.counterclockwise")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50, height: 50)
-                            .fontWeight(.semibold)
                     }
-                    Spacer().frame(height: 240)
+                    Spacer().frame(height: 200)
                 }
             }
             
@@ -36,29 +31,42 @@ struct NetworkStateController: View{
                     ErrorStateView(error: error)
                     VStack {
                         Spacer()
-                        Button {
+                        ActionButton(buttonDisplay: "arrow.trianglehead.counterclockwise.icloud.fill", infinite: false, alignLeft: false) {
                             onRetry()
-                        } label: {
-                            Image(systemName: "arrow.trianglehead.counterclockwise")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 50, height: 50)
-                                .fontWeight(.semibold)
                         }
-                        Spacer().frame(height: 240)
+                        Spacer().frame(height: 200)
                     }
+                    HStack {
+                        Spacer()
+                        VStack {
+                            ActionButton(buttonDisplay: "person", infinite: false, alignLeft: false) {
+                                onRetry()
+                            }
+                            ActionButton(buttonDisplay: "gear", infinite: false, alignLeft: false) {
+                                onRetry()
+                            }
+                            ActionButton(buttonDisplay: "ellipsis", infinite: false, alignLeft: false) {
+                                onRetry()
+                            }
+                            Spacer()
+                        }
+                        .padding()
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
         case .isLoading:
             LoadingStateView()
         case .isSuccess:
-            EmptyView()
-            // Your Success View
+            success()
+               
+            // Your ViewLoader
         }
     }
 }
 
-
 #Preview {
-    NetworkStateController(state: .isError(""), onRetry: {})
+    NetworkStateController(state: .isError(" nil"), onRetry: {}) {
+        EmptyView()
+    }
 }
 

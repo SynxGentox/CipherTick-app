@@ -18,16 +18,16 @@ struct ErrorStateView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: size, maxHeight: size)
-                    .foregroundStyle(.orange)
+                    .foregroundStyle(GetColor.deepRed.opacity(0.8))
                     .symbolEffect(.breathe)
                     .symbolRenderingMode(.multicolor)
+                    
                 SkeletonFlashView(isAnimating: true, size: size)
                     .blendMode(.destinationOut)
             }
             Text("Error Connecting: \(String(describing: error ?? "Something went wrong"))")
                 // font style
                 .padding(.horizontal, 30)
-                .padding(.bottom, 30)
         }
         .compositingGroup()
     }
