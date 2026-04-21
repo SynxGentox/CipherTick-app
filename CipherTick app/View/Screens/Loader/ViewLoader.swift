@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ViewLoader: View {
-    @State private var viewModel = CoinsViewModel(repository: CryptoRepositoryImpl())
+    @State private var viewModel = CoinViewModel(repository: CryptoRepositoryImpl())
     var body: some View {
         NetworkStateController(state: viewModel.appState) {
                     Task { await viewModel.fetch() }

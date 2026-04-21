@@ -11,7 +11,7 @@ actor RateThrottler {
     private var lastRequestTime: Date?
     private var interval: TimeInterval
     
-    init (interval: TimeInterval = 4) {
+    init (interval: TimeInterval = 3.3) {
         self.interval = interval
     }
     

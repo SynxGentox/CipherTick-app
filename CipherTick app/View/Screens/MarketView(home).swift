@@ -54,10 +54,10 @@ struct MarketView: View {
 
 #Preview {
     let dummyData = Array(arrayLiteral: Coin(
-        id: "sfd",
-        name: "dsf",
-        symbol: "dsf",
-        image: "fdg",
+        id: "bitcoin",
+        name: "Bitcoin",
+        symbol: "btc",
+        image: "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
         price: 234.3,
         marketCap: 343.3,
         volume: 34.4,
@@ -67,22 +67,21 @@ struct MarketView: View {
         high24hr: 3.4,
         low24hr: 45.4,
         lastUpdated: "fs"
-    ),
-                          Coin(
-                            id: "sfd",
-                            name: "dsf",
-                            symbol: "dsf",
-                            image: "fdg",
-                            price: 234.3,
-                            marketCap: 343.3,
-                            volume: 34.4,
-                            marketCapRank: 3,
-                            priceChange: 23.3,
-                            changePercent: 324.3,
-                            high24hr: 3.4,
-                            low24hr: 45.4,
-                            lastUpdated: "fs"
-                          ))
+    ), Coin(
+        id: "bitcoin",
+        name: "Bitcoin",
+        symbol: "btc",
+        image: "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
+        price: 234.3,
+        marketCap: 343.3,
+        volume: 34.4,
+        marketCapRank: 3,
+        priceChange: 23.3,
+        changePercent: 324.3,
+        high24hr: 3.4,
+        low24hr: 45.4,
+        lastUpdated: "fs"
+    ))
     
     MarketView(
         filteredCoin: dummyData,

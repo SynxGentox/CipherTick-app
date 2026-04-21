@@ -19,7 +19,7 @@ final class APIConfig {
                                                 /// NOTE: - this app can only be stopped either from API server crash or shuddown or Manual Shutdown through this switch (be careful)
     
     //API key Control
-    var useAPIKey = false                       //Enable to use APIKey
+    var useAPIKey = true                       //Enable to use APIKey
     var isKeyPremium = false                    //Enable this if your key is Premium ?? demoKey
     
     var demoKeyDelay = 3.3
