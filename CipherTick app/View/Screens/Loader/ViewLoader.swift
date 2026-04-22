@@ -11,26 +11,32 @@ struct ViewLoader: View {
     @State private var viewModel = CoinViewModel(repository: CryptoRepositoryImpl())
     var body: some View {
         NetworkStateController(state: viewModel.appState) {
-                    Task { await viewModel.fetch() }
-                } success: {
-                    TabView {
-                        Tab("", systemImage: "coloncurrencysign.circle.fill") {
-                            NavigationStack {
-                                MarketView(filteredCoin: viewModel.filteredItems, searchText: $viewModel.searchText, doRefresh: doRefresh)
-                                    .navigationDestination(for: AppRoute.self) { route in
-                                        switch route {
-                                        case .coinDetail(let coin):
-                                            Text(coin.name) // placeholder
-                                        }
-                                    }
+            Task { await viewModel.fetch() }
+        } success: {
+            TabView {
+                Tab("", systemImage: "coloncurrencysign.circle.fill") {
+                    NavigationStack {
+                        MarketView(
+                            filteredCoin: viewModel.filteredItems,
+                            searchText: $viewModel.searchText,
+                            doRefresh: doRefresh
+                        )
+                        .navigationDestination(for: AppRoute.self) { route in
+                            switch route {
+                                case .coinDetail(let coin):
+                                    CoinDetailsView(coin: coin) // placeholder
                             }
                         }
-                        Tab("", systemImage: "square.fill.on.circle.fill") {}
-                        Tab("", systemImage: "coloncurrencysign.bank.building.fill") {}
-                        Tab("", systemImage: "wallet.bifold.fill") {}
                     }
                 }
-                .task { await viewModel.fetch() }
+                Tab("", systemImage: "square.fill.on.circle.fill") {}
+                Tab("", systemImage: "coloncurrencysign.bank.building.fill") {}
+                Tab("", systemImage: "wallet.bifold.fill") {
+                    WatchlistView()
+                }
+            }
+        }
+        .task { await viewModel.fetch() }
     }
     func doRefresh() async {
         await viewModel.manualRefresh()

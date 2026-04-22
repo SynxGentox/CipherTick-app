@@ -47,7 +47,10 @@ struct CoinDetailsView: View {
                         }
                         
                         if let change = detail.marketData.priceChangePercentPerDay {
-                            Text("\((change.first?.value ?? 0.0) >= 0.0 ? "+" : "")\(String(format: "%.2f", change))%")
+                            let value = change.first?.value ?? 0.0
+                            let prefix = value >= 0.0 ? "+" : "-"
+                            let formatter = (value.formatted(.number.precision(.fractionLength(2))))
+                            Text("\(prefix)\(formatter)%")
                                 .foregroundStyle((change.first?.value ?? 0.0) >= 0.0 ? GetColor.customGreen : GetColor.deepRed)
                         }
                         

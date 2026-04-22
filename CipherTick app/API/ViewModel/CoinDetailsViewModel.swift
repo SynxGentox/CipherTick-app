@@ -22,6 +22,7 @@ final class CoinDetailsViewModel {
     }
     
     func fetch() async {
+        guard coinDetails == nil else { return }
         appState = .isLoading
         do {
             let result = try await repository.fetchDetails(id: coinId)

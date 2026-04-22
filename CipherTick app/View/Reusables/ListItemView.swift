@@ -11,14 +11,11 @@ struct ListItemView: View {
     let coin: Coin
     var body: some View {
         FeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
+            NavigationLink(value: AppRoute.coinDetail(coin)) {
                 HStack {
                     // Change the Image to CoinImage funciton to getch the image from the server the string provided by the API
-                    Image(systemName: "circle.fill")
+                    APIImage(image: coin.image ?? "exclamationmark.trianglepath")
                     /// Got to iconStyle.swift to edit the iconStyle
-                        .iconStyle(buttonHeight: ButtonT.HeightT.medium,
-                                   buttonWidth: ButtonT.WidthT.medium,
-                                   iconColor: GetColor.primary,
-                                   alignLeft: false)
                     VStack(alignment: .listRowSeparatorLeading) {
                         Text(coin.name)
                             .primaryStyle(fontSize: FontT.primary)
@@ -40,13 +37,17 @@ struct ListItemView: View {
                         Text((coin.price ?? 0.00), format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                             .foregroundStyle( (coin.changePercent ?? 0.00) >= 0 ? GetColor.metallicGold : GetColor.deepRed)
                             .amountStyle(fontSize: FontT.primary)
-                        Text(((coin.changePercent ?? 0.00) >= 0 ? "+" : "")
-                             + (coin.changePercent ?? 0.00).formatted(.number.precision(.fractionLength(2)))
-                             + "%")
-                        .secondaryStyle(fontSize: FontT.primary - 3)
+                        let change = coin.changePercent ?? 0.00
+                        let prefix = change >= 0 ? "+" : ""
+                        let formatted = change.formatted(.number.precision(.fractionLength(2)))
+                        
+                        Text("\(prefix)\(formatted)%")
+                            .secondaryStyle(fontSize: FontT.primary - 3)
                     }
                 }
-            .frame(maxWidth: .infinity, maxHeight: 65)
+                .frame(maxWidth: .infinity, maxHeight: 65)
+            }
+            .buttonStyle(.plain)
         }
     }
         
