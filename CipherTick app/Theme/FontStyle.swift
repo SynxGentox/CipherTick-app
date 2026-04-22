@@ -28,7 +28,7 @@ struct SecondaryStyle: ViewModifier {
     let fontSize: CGFloat
     func body(content: Content) -> some View {
         content
-            .foregroundStyle(GetColor.customGreen)
+            .foregroundStyle(GetColor.primary.opacity(0.8))
             .font(
                 .system(size: fontSize, weight: .semibold, design: .rounded)
             )
