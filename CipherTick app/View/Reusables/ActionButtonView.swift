@@ -51,7 +51,7 @@ struct ActionNavigationButton<Destination: View>: View {
                 )
             }
             .navigationDestination(for: String.self) { _ in
-                EmptyView()     //Your View
+                destination    //Your View
             }
             // Go to buttonStyle.swift to check buttonStyle
             .buttonStyle(ActionButtonStyle(isSelected: isSelected))

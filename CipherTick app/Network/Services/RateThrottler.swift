@@ -15,7 +15,7 @@ actor RateThrottler {
         self.interval = interval
     }
     
-    func canProceed() -> Bool {
+    var canProceed: Bool {
         guard let last = lastRequestTime else {
             lastRequestTime = .now
             return true

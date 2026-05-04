@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NetworkStateController<Success: View>: View{
     let state: NetworkState
-    var onRetry: () -> Void
+    var onRetry: () async -> Void
     @ViewBuilder var success: () -> Success
     
     var body: some View {
@@ -20,7 +20,9 @@ struct NetworkStateController<Success: View>: View{
                 VStack {
                     Spacer()
                     ActionButton(buttonDisplay: "arrow.trianglehead.counterclockwise.icloud.fill", infinite: false, alignLeft: false) {
-                        onRetry()
+                        Task {
+                            await onRetry()
+                        }
                     }
                     Spacer().frame(height: 200)
                 }
@@ -32,7 +34,9 @@ struct NetworkStateController<Success: View>: View{
                     VStack {
                         Spacer()
                         ActionButton(buttonDisplay: "arrow.trianglehead.counterclockwise.icloud.fill", infinite: false, alignLeft: false) {
-                            onRetry()
+                            Task {
+                                await onRetry()
+                            }
                         }
                         Spacer().frame(height: 200)
                     }
@@ -40,13 +44,19 @@ struct NetworkStateController<Success: View>: View{
                         Spacer()
                         VStack {
                             ActionButton(buttonDisplay: "person", infinite: false, alignLeft: false) {
-                                onRetry()
+                                Task {
+                                    await onRetry()
+                                }
                             }
                             ActionButton(buttonDisplay: "gear", infinite: false, alignLeft: false) {
-                                onRetry()
+                                Task {
+                                    await onRetry()
+                                }
                             }
                             ActionButton(buttonDisplay: "ellipsis", infinite: false, alignLeft: false) {
-                                onRetry()
+                                Task {
+                                    await onRetry()
+                                }
                             }
                             Spacer()
                         }

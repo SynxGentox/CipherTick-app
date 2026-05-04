@@ -25,8 +25,8 @@ struct NetworkService: NetworkServiceProtocol {
          var request = URLRequest(url: url)
          
          if APIConfig.shared.useAPIKey {
-             request.setValue(APIKey.key, forHTTPHeaderField: "x-cg-demo-api-key")
-             guard await rateThrottler.canProceed() else {
+             request.setValue(APIKey.key.rawValue, forHTTPHeaderField: "x-cg-demo-api-key")
+             guard await rateThrottler.canProceed else {
                  throw APIError.rateThrottled
              }
          }

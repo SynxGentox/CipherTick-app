@@ -5,14 +5,10 @@
 //  Created by Aryan Verma on 21/04/26.
 //
 
-//
-//  CoinDetailView.swift
-//  CipherTick app
-//
-
 import SwiftUI
 
 struct CoinDetailsView: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     let coin: Coin
     @State private var viewModel: CoinDetailsViewModel
     
@@ -27,7 +23,7 @@ struct CoinDetailsView: View {
         } success: {
             if let detail = viewModel.coinDetails {
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: sizing.viewVSpacing) {
                         AsyncImage(url: URL(string: detail.image.large)) { image in
                             image.resizable().scaledToFit()
                         } placeholder: {
@@ -54,7 +50,7 @@ struct CoinDetailsView: View {
                                 .foregroundStyle((change.first?.value ?? 0.0) >= 0.0 ? GetColor.customGreen : GetColor.deepRed)
                         }
                         
-                        if let desc = detail.description.en, !desc.isEmpty {
+                        if let desc = detail.description?.en, !desc.isEmpty {
                             Text(desc)
                                 .secondaryStyle(fontSize: FontT.secondary)
                                 .padding(.top, 8)
@@ -66,6 +62,10 @@ struct CoinDetailsView: View {
         }
         .task { await viewModel.fetch() }
         .navigationTitle(coin.name)
+    }
+    
+    var sizing: Sizing {
+        horizontalSizeClass == .compact ? CompactSizing() : RegularSizing()
     }
 }
 

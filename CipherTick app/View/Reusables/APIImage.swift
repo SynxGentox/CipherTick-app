@@ -14,8 +14,9 @@ struct APIImage: View {
         AsyncImage(url: URL(string: image)) { phase in
             if let image = phase.image {
                 image
-                    .iconStyle(buttonHeight: ButtonT.HeightT.medium,
-                               buttonWidth: ButtonT.WidthT.medium,
+                // TODO: make it reusable and generic by removing the style
+                    .iconStyle(buttonHeight: ButtonT.HeightT.small,
+                               buttonWidth: ButtonT.WidthT.small,
                                iconColor: GetColor.primary,
                                alignLeft: false)
                 

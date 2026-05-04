@@ -1,5 +1,5 @@
 //
-//  CoinViewModel.swift
+//  MarketViewModel.swift
 //  CipherTick app
 //
 //  Created by Aryan Verma on 16/04/26.
@@ -10,7 +10,7 @@ import Observation
 
 @Observable
 @MainActor
-final class CoinViewModel {
+final class MarketViewModel {
     var coins: [Coin] = []
     var appState: NetworkState = .isLoading
     var searchText: String = ""

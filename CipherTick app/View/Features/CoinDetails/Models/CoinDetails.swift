@@ -12,7 +12,7 @@ struct CoinDetails: Decodable {
     let category: [String]
     
     let blockTime: Int?
-    let description: Description                                // description
+    let description: Description?                                // description
     let links: Link                                             // links
     let image: Image                                            // image
     let marketData: MarketData

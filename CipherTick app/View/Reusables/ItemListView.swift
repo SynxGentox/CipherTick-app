@@ -10,19 +10,28 @@ import SwiftUI
 struct ItemListView: View {
     let filteredCoin: [Coin]
     let filterItem = ["Trending", "Price", "Market Cap", "24h_change"]
+    
     var body: some View {
-        
-        HStack {
-            ForEach(filterItem, id: \.self) { item in
-                Text(item)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 5)
-                
-                    .buttonStyle(ActionButtonStyle(isSelected: true))
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(filterItem, id: \.self) { item in
+                    if #available(iOS 26.0, *) {
+                        Text(item)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .glassEffect()
+                    } else {
+                        Text(item)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                    }
+                }
+                .secondaryStyle(fontSize: FontT.secondary)
             }
-            .secondaryStyle(fontSize: FontT.secondary)
-            Spacer()
         }
+        .safeAreaPadding(.horizontal)
+        .padding(.top, 8)
+       
         .secondaryStyle(fontSize: FontT.secondary)
         ForEach(filteredCoin, id: \.id) { coin in
             ListItemView(coin: coin)

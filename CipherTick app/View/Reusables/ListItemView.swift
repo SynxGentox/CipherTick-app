@@ -15,28 +15,39 @@ struct ListItemView: View {
                 HStack {
                     // Change the Image to CoinImage funciton to getch the image from the server the string provided by the API
                     APIImage(image: coin.image ?? "exclamationmark.trianglepath")
+                      
                     /// Got to iconStyle.swift to edit the iconStyle
                     VStack(alignment: .listRowSeparatorLeading) {
                         Text(coin.name)
                             .primaryStyle(fontSize: FontT.primary)
-                        Text("(\(coin.symbol))")
-                            .secondaryStyle(fontSize: FontT.primary - 3)
+                            .minimumScaleFactor(0.8)
+                            .lineLimit(2)
+                        Text("(\(coin.symbol.uppercased()))")
+                            .secondaryStyle(fontSize: FontT.secondary)
+                            .minimumScaleFactor(0.8)
+                            .lineLimit(1)
                     }
+                    .frame(width: 80, alignment: .leading)
                     
-                    Spacer()
+                    Spacer(minLength: .zero)
                     
-                    Card(radius: CardT.RadiusOrPaddingT.smoothRadius,
-                         width: CardT.WidthT.medium,
-                         height: CardT.HeightT.infinity,
-                         color: GetColor.accent)
+                    Color.clear
+                        .card(color: .gray.opacity(0.3),
+                              radius: CardT.RadiusOrPaddingT.sharpRadius)
+                        .frame(width: CardT.WidthT.medium,
+                               height: CardT.HeightT.small)
                     
-                    
-                    Spacer()
                     
                     VStack(alignment: .listRowSeparatorTrailing) {
-                        Text((coin.price ?? 0.00), format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-                            .foregroundStyle( (coin.changePercent ?? 0.00) >= 0 ? GetColor.metallicGold : GetColor.deepRed)
-                            .amountStyle(fontSize: FontT.primary)
+                        Text(
+                            coin.price ?? .zero,
+                            format: .currency(code: Locale.current.currency?.identifier ?? "USD")
+                        )
+                        .foregroundStyle(getPercentageColor(coin.changePercent ?? .zero))
+                        .amountStyle(fontSize: FontT.primary)
+                        .minimumScaleFactor(0.4)
+                        .lineLimit(1)
+                        
                         let change = coin.changePercent ?? 0.00
                         let prefix = change >= 0 ? "+" : ""
                         let formatted = change.formatted(.number.precision(.fractionLength(2)))
@@ -44,13 +55,17 @@ struct ListItemView: View {
                         Text("\(prefix)\(formatted)%")
                             .secondaryStyle(fontSize: FontT.primary - 3)
                     }
+                    .frame(width: 100, alignment: .trailing)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 65)
+                .frame(maxHeight: 65)
             }
             .buttonStyle(.plain)
         }
     }
-        
+      
+    func getPercentageColor(_ percentage: Double) -> Color {
+        percentage >= .zero ? GetColor.metallicGold : GetColor.deepRed
+    }
 }
 
 #Preview {
