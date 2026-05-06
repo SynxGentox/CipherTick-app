@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		4783A04E2F92618200F86E29 /* CipherTick app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "CipherTick app.app"; path = "/Users/varyan/Xcode/IOS apps/CipherTick app/build/Debug-iphoneos/CipherTick app.app"; sourceTree = "<absolute>"; };
+		47ACF23E2FAB427F00BB8055 /* CipherTick app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CipherTick app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,6 +33,7 @@
 			isa = PBXGroup;
 			children = (
 				47A6A0542F8FDD9F0010E174 /* CipherTick app */,
+				47ACF23E2FAB427F00BB8055 /* CipherTick app.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,7 +59,7 @@
 			packageProductDependencies = (
 			);
 			productName = "CipherTick app";
-			productReference = 4783A04E2F92618200F86E29 /* CipherTick app.app */;
+			productReference = 47ACF23E2FAB427F00BB8055 /* CipherTick app.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

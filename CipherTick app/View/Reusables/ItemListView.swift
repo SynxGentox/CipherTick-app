@@ -32,7 +32,6 @@ struct ItemListView: View {
         .safeAreaPadding(.horizontal)
         .padding(.top, 8)
        
-        .secondaryStyle(fontSize: FontT.secondary)
         ForEach(filteredCoin, id: \.id) { coin in
             ListItemView(coin: coin)
             Divider()

@@ -53,7 +53,7 @@ struct ListItemView: View {
                         let formatted = change.formatted(.number.precision(.fractionLength(2)))
                         
                         Text("\(prefix)\(formatted)%")
-                            .secondaryStyle(fontSize: FontT.primary - 3)
+                            .secondaryStyle(fontSize: FontT.secondary)
                     }
                     .frame(width: 100, alignment: .trailing)
                 }

@@ -47,7 +47,7 @@ struct CoinDetailsView: View {
                             let prefix = value >= 0.0 ? "+" : ""
                             let formatter = (value.formatted(.number.precision(.fractionLength(2))))
                             Text("\(prefix)\(formatter)%")
-                                .foregroundStyle((change.first?.value ?? 0.0) >= 0.0 ? GetColor.customGreen : GetColor.deepRed)
+                                .foregroundStyle((change.first?.value ?? 0.0) >= 0.0 ? GetColor.persianBlue : GetColor.deepRed)
                         }
                         
                         if let desc = detail.description?.en, !desc.isEmpty {

@@ -17,7 +17,7 @@ final class APIConfig {
     let isAppWorking = true                     //Enable or Disable this to controller whether the app should work or not
                                                 /// NOTE: - this app can only be stopped either from API server crash or shuddown or Manual Shutdown through this switch (be careful)
     //API key Control
-    let useAPIKey = false                        //Enable to use APIKey
+    let useAPIKey = true                        //Enable to use APIKey
     let isKeyPremium = false                    //Enable this if your key is Premium ?? demoKey
     
    // UserDefaults.standard.register(defaults: [])

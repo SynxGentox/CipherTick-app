@@ -15,8 +15,7 @@ extension Image {
             .fontWeight(.regular)
             .foregroundStyle(iconColor)
             .padding(ButtonT.IconPaddingT.small)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignLeft ? .leading : .center)
-            .frame(maxWidth: buttonWidth, maxHeight: buttonHeight)
+            .frame(maxWidth: buttonWidth, maxHeight: buttonHeight, alignment: alignLeft ? .leading : .center)
     }
 }
 

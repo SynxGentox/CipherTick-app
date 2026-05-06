@@ -20,6 +20,7 @@ final class MarketViewModel {
         APIConfig.shared.isKeyPremium ? APIConfig.shared.premiumKeyDelay : APIConfig.shared.demoKeyDelay
     }
     private var isFetching = false
+    private var selectedSort: SortOptions = .change24h
     
     init(repository: CryptoRepository) {
         self.repository = repository
@@ -59,6 +60,34 @@ final class MarketViewModel {
             $0.name.localizedCaseInsensitiveContains(searchText) ||
             $0.symbol.localizedCaseInsensitiveContains(searchText)
         }
+    }
+    
+    var sortedArray: [Coin] {
+        var result = coins
+        
+        result.sort { lhs, rhs in
+            switch selectedSort {
+                case .change24h:
+                    guard let l = lhs.changePercent else { return false }
+                    guard let r = rhs.changePercent else { return true }
+                    return l > r
+                case .marketCap:
+                    guard let l = lhs.marketCap else { return false }
+                    guard let r = rhs.marketCap else { return true }
+                    return l > r
+                case .price:
+                    guard let l = lhs.price else { return false }
+                    guard let r = rhs.price else { return true }
+                    return l > r
+                case .trending:
+                    guard let l = lhs.changePercent else { return false }
+                    guard let r = rhs.changePercent else { return true }
+                    return l > r
+                default:
+                    return true
+            }
+        }
+        return result
     }
     
     // more code...

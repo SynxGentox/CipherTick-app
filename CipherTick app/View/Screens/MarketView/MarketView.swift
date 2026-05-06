@@ -22,25 +22,19 @@ struct MarketView: View {
     var content: some View {
         FeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
             ScrollView {
-                VStack{
-                    Color.clear
-                        .card(color: GetColor.customGreen,
-                              radius: CardT.RadiusOrPaddingT.smoothRadius)
-                        .frame(height: CardT.HeightT.large)
+                VStack(spacing: 0){
+                    CoinsOverView()
                     
-                    Color.clear
-                        .card(color: GetColor.customGreen,
-                              radius: CardT.RadiusOrPaddingT.smoothRadius)
-                        .frame(height: CardT.HeightT.large)
+                    TopCoinsView(sortedCoin: viewModel.sortedArray)
+                        .padding([.horizontal, .top], 1)
                     
                     VStack {
                         ItemListView(filteredCoin: viewModel.filteredItems)
                     }
-                    .background(GetColor.customGreen)
-                    
+                    .card(color: GetColor.ghostWhite, radius: CardT.RadiusOrPaddingT.smoothRadius)
                 }
             }
-            .background(GetColor.customBlack)
+            .background(GetColor.ghostWhite)
             .searchable(text: $viewModel.searchText, prompt: "Search coins, symbols...")
             .refreshable {
                 await viewModel.manualRefresh()

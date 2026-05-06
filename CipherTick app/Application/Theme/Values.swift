@@ -53,9 +53,9 @@ enum CardT {
         static let small: CGFloat = 60
         static let higherSmall: CGFloat = 80
         static let lowerMedium: CGFloat = 100
-        static let medium: CGFloat = 120
-        static let large: CGFloat = 180
-        static let xLarge: CGFloat = 270
+        static let medium: CGFloat = 160
+        static let large: CGFloat = 220
+        static let xLarge: CGFloat = 280
         static let infinity: CGFloat = .infinity
     }
     
@@ -88,7 +88,8 @@ struct GetColor {
     static let clear = Color.clear
     static let metallicGold = Color("metallicGold")
     static let customBlack = Color("customBlack")
-    static let customGreen = Color("customGreen")
+    static let persianBlue = Color("persianBlue")
+    static let ghostWhite = Color("ghostWhite")
     static let deepRed = Color("deepRed")
 }
 
