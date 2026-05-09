@@ -9,26 +9,32 @@ import SwiftUI
 
 struct TopCoinsView: View {
     let sortedCoin: [Coin]
+    @State var index = 1
     var body: some View {
         ZStack {
-            HStack {
-                ForEach (sortedCoin.prefix(3), id: \.id) {coin in
+            HStack(spacing: 1) {
+                ForEach (sortedCoin.prefix(3), id: \.id) { coin in
                     ZStack {
                         Color.clear
-                            .card(color: GetColor.persianBlue, radius: CardT.RadiusOrPaddingT.smoothRadius)
+                            .card(color: GetColor.plum.opacity(0.9), radius: CardT.RadiusOrPaddingT.smoothRadius)
                             .frame(maxWidth: .infinity, minHeight: CardT.HeightT.medium, maxHeight: CardT.HeightT.medium)
                         
-                        VStack {
-                            Text(coin.name)
-                                .primaryStyle(fontSize: FontT.primary)
+                        VStack(spacing: 0) {
                             APIImage(image: coin.image ?? "exclamationmark.trianglepath")
-                            Text(coin.symbol)
-                                .primaryStyle(fontSize: FontT.primary)
-                            Text(coin.high24hr ?? 0.0, format: .number)
-                                .primaryStyle(fontSize: FontT.primary)
-
+                            VStack(alignment: .leading) {
+                                Text(coin.name)
+                                Text("CRank: \(coin.marketCapRank ?? 0)")
+                                
+                                Text(coin.price ?? 0.0, format:.currency(code: Locale.current.currency?.identifier ?? "USD"))
+                            }
                         }
+                        .padding(.vertical)
+                        .foregroundStyle(GetColor.milkWhite)
+                        .font(
+                            .system(size: FontT.secondary, weight: .semibold, design: .monospaced)
+                        )
                     }
+                    
                 }
                 
             }

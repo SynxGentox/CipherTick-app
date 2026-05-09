@@ -20,7 +20,7 @@ final class MarketViewModel {
         APIConfig.shared.isKeyPremium ? APIConfig.shared.premiumKeyDelay : APIConfig.shared.demoKeyDelay
     }
     private var isFetching = false
-    private var selectedSort: SortOptions = .change24h
+    var selectedSort: SortOptions = .all
     
     init(repository: CryptoRepository) {
         self.repository = repository
@@ -53,17 +53,15 @@ final class MarketViewModel {
         await fetch()
     }
     
-    var filteredItems: [Coin] {
-        searchText.isEmpty ?
-        coins :
-        coins.filter {
-            $0.name.localizedCaseInsensitiveContains(searchText) ||
-            $0.symbol.localizedCaseInsensitiveContains(searchText)
-        }
-    }
-    
     var sortedArray: [Coin] {
         var result = coins
+        
+        if !searchText.isEmpty {
+            return coins.filter {
+                $0.name.localizedCaseInsensitiveContains(searchText) ||
+                $0.symbol.localizedCaseInsensitiveContains(searchText)
+            }
+        }
         
         result.sort { lhs, rhs in
             switch selectedSort {
@@ -83,12 +81,20 @@ final class MarketViewModel {
                     guard let l = lhs.changePercent else { return false }
                     guard let r = rhs.changePercent else { return true }
                     return l > r
-                default:
-                    return true
+                case .all:
+                    return (lhs.marketCapRank ?? Int.max) < (rhs.marketCapRank ?? Int.max)
             }
         }
         return result
     }
     
+    var greeting: String {
+        let hour = Calendar.current.component(.hour, from: .now)
+        switch hour {
+        case 5..<12: return "Good morning"
+        case 12..<17: return "Good afternoon"
+        default: return "Good evening"
+        }
+    }
     // more code...
 }

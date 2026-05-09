@@ -17,7 +17,7 @@ struct WatchlistView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 60, height: 60)
-                    .foregroundStyle(GetColor.metallicGold)
+                    .foregroundStyle(GetColor.kiwi)
                 Text("Watchlist")
                     .primaryStyle(fontSize: FontT.primary)
                 Text("Coming soon")

@@ -14,7 +14,7 @@ struct CoinsOverView: View {
                 HStack {
                     ForEach(0..<3)  {_ in
                         Color.clear
-                            .card(color: GetColor.persianBlue, radius: CardT.RadiusOrPaddingT.sharpRadius)
+                            .card(color: GetColor.plum.opacity(0.9), radius: CardT.RadiusOrPaddingT.sharpRadius)
                             .frame(width: 400)
                     }
                     
@@ -22,7 +22,7 @@ struct CoinsOverView: View {
                 .padding(.horizontal, 1)
             }
             Text("Carosel like coin page view")
-                .foregroundStyle(Color.ghostWhite)
+                .foregroundStyle(Color.milkWhite)
         }
         .frame(height: CardT.HeightT.large)
     }

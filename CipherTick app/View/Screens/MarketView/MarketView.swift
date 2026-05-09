@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MarketView: View {
-    @State private var viewModel = MarketViewModel(repository: CryptoRepositoryImpl())
+    @Bindable var viewModel: MarketViewModel
     
     var body: some View {
         NetworkStateController(state: viewModel.appState,
@@ -22,20 +22,22 @@ struct MarketView: View {
     var content: some View {
         FeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
             ScrollView {
-                VStack(spacing: 0){
+                VStack(alignment: .leading, spacing: 1){
+                    Text(viewModel.greeting)
+                        .amountStyle(fontSize: FontT.amount)
+                        .padding(.vertical)
                     CoinsOverView()
                     
                     TopCoinsView(sortedCoin: viewModel.sortedArray)
                         .padding([.horizontal, .top], 1)
                     
                     VStack {
-                        ItemListView(filteredCoin: viewModel.filteredItems)
+                        ItemListView(filteredCoin: viewModel.sortedArray, selectedSort: $viewModel.selectedSort)
                     }
-                    .card(color: GetColor.ghostWhite, radius: CardT.RadiusOrPaddingT.smoothRadius)
+                    .card(color: GetColor.milkWhite, radius: CardT.RadiusOrPaddingT.smoothRadius)
                 }
             }
-            .background(GetColor.ghostWhite)
-            .searchable(text: $viewModel.searchText, prompt: "Search coins, symbols...")
+            .background(GetColor.milkWhite)
             .refreshable {
                 await viewModel.manualRefresh()
             }
@@ -45,5 +47,5 @@ struct MarketView: View {
 
 #Preview {
     
-    MarketView()
+    MarketView(viewModel: MarketViewModel(repository: CryptoRepositoryImpl()))
 }

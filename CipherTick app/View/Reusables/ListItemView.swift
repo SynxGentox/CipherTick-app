@@ -64,7 +64,7 @@ struct ListItemView: View {
     }
       
     func getPercentageColor(_ percentage: Double) -> Color {
-        percentage >= .zero ? GetColor.metallicGold : GetColor.deepRed
+        percentage >= .zero ? GetColor.kiwi : GetColor.imperialRed
     }
 }
 

@@ -23,7 +23,7 @@ struct APIImage: View {
             } else if phase.error != nil {
                 VStack {
                     Image(systemName: "exclamationmark.triangle")
-                        .foregroundStyle(GetColor.deepRed)
+                        .foregroundStyle(GetColor.imperialRed)
                 }
             }
             else {

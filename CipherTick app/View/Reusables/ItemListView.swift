@@ -9,21 +9,27 @@ import SwiftUI
 
 struct ItemListView: View {
     let filteredCoin: [Coin]
-    let filterItem = ["Trending", "Price", "Market Cap", "24h_change"]
+    @Binding var selectedSort: SortOptions
     
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                ForEach(filterItem, id: \.self) { item in
+                ForEach(SortOptions.allCases, id: \.self) { options in
                     if #available(iOS 26.0, *) {
-                        Text(item)
+                        Text(options.rawValue)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
                             .glassEffect()
+                            .onTapGesture {
+                                selectedSort = options
+                            }
                     } else {
-                        Text(item)
+                        Text(options.rawValue)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
+                            .onTapGesture {
+                                selectedSort = options
+                            }
                     }
                 }
                 .secondaryStyle(fontSize: FontT.secondary)
@@ -72,5 +78,5 @@ struct ItemListView: View {
         lastUpdated: "fs"
     ))
     
-    ItemListView(filteredCoin: dummyData)
+    ItemListView(filteredCoin: dummyData, selectedSort: .constant(.change24h))
 }

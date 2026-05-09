@@ -69,7 +69,7 @@ enum CardT {
     }
     
     struct RadiusOrPaddingT {
-        static let smoothRadius: CGFloat = 30
+        static let smoothRadius: CGFloat = 30 * 1.618
         static let sharpRadius: CGFloat = 8
         static let padding: CGFloat = 18
     }
@@ -86,11 +86,13 @@ struct GetColor {
     static let sysGray = Color(UIColor.systemGray6)
     static let grayStatic = Color.gray
     static let clear = Color.clear
-    static let metallicGold = Color("metallicGold")
+    static let kiwi = Color("kiwi")
     static let customBlack = Color("customBlack")
-    static let persianBlue = Color("persianBlue")
-    static let ghostWhite = Color("ghostWhite")
-    static let deepRed = Color("deepRed")
+    static let plum = Color("plum")
+    static let darkPlum = Color("darkPlum")
+    static let milkWhite = Color("milkWhite")
+    static let imperialRed = Color("imperialRed")
+    static let customIDK = Color("customIDK")
 }
 
 

@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ViewLoader: View {
+    @State private var viewModel = MarketViewModel(repository: CryptoRepositoryImpl())
     var body: some View {
         TabView {
             Tab("", systemImage: "coloncurrencysign.circle.fill") {
                 NavigationStack {
-                    MarketView()
+                    MarketView(viewModel: viewModel)
                         .navigationDestination(for: AppRoute.self) { route in
                             switch route {
                             case .coinDetail(let coin):
@@ -22,9 +23,11 @@ struct ViewLoader: View {
                 }
             }
             Tab("", systemImage: "square.fill.on.circle.fill") {}
-            Tab("", systemImage: "coloncurrencysign.bank.building.fill") {}
             Tab("", systemImage: "wallet.bifold.fill") {
                 WatchlistView()
+            }
+            Tab(role: .search) {
+                
             }
         }
     }

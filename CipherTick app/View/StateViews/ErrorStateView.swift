@@ -18,7 +18,7 @@ struct ErrorStateView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: size, maxHeight: size)
-                    .foregroundStyle(GetColor.deepRed.opacity(0.8))
+                    .foregroundStyle(GetColor.imperialRed.opacity(0.8))
                     .symbolEffect(.breathe)
                     .symbolRenderingMode(.multicolor)
                     
