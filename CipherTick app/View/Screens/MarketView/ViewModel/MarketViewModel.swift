@@ -29,7 +29,7 @@ final class MarketViewModel {
     func fetch() async {
         guard !isFetching else { return }
         isFetching = true
-        if coins.isEmpty { appState = .isLoading}
+        if coins.isEmpty { appState = .isLoading }
         do {
             let result = try await repository.fetch()
             if result.isEmpty {
