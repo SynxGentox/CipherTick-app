@@ -115,7 +115,7 @@ On transition complete, the previous page is cleared from memory
 
 This gives zero visible latency on forward navigation, absolute memory control (locked at 60 items maximum), and ties the network fetch to proven user intent (the swipe gesture) rather than speculative prefetching.
 
-Performance (Real Device — iPad 10th Gen, A14 Bionic)
+### Performance (Real Device — iPad 10th Gen, A14 Bionic)
 Measured via Xcode Instruments. Idle figures taken after initial load with no active network requests.
 StateMemoryIdle12 MBActive (fetching + rendering)38 MBEnergyLowCPU at idle0%
 
