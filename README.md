@@ -16,9 +16,9 @@ A crypto market tracker built with engineering taste. Live prices, market data, 
 
 ---
 
-## Architecture
+# Architecture
 
-### Control Room (APIConfig.swift)
+## Control Room (APIConfig.swift)
 
  - A 3-tier API control layer that manages the entire app's network behaviour from one place — readable by anyone, not just engineers.
 
@@ -34,8 +34,7 @@ let isEnabledSearch  = false
 
  - Every endpoint checks its own feature flag before firing. Every URL routes through URLConstructor which reads APIConfig to decide which base URL to use. Flipping isAppWorking to false stops the entire app at the network layer without touching any view code.
  - Designed independently as a way to make the config layer self-documenting and non-technical-user readable.
-   
- ### Endpoint Namespace System (Endpoint.swift)
+ - Endpoint Namespace System (Endpoint.swift)
  - Each API domain is its own enum conforming to EndpointType. Every endpoint carries its own feature-disable error — so if a feature is off, the error is thrown at the endpoint level before a URL is even constructed.
 
 ```
@@ -47,7 +46,7 @@ protocol EndpointType {
 
 Nine namespaces: Coins, Charts, Search, Global, NFTs, Categories, OnChain, Exchanges, Treasury. Disabled ones throw featureDisabled immediately, never reaching the network layer.
 
-### Clean Architecture
+## Clean Architecture
 
  - CryptoRepository protocol with CryptoRepositoryImpl — network layer is fully swappable via dependency injection
  - NetworkServiceProtocol — injectable for testing
@@ -55,7 +54,7 @@ Nine namespaces: Coins, Charts, Search, Global, NFTs, Categories, OnChain, Excha
  - NetworkState enum drives all UI states: .isLoading, .isSuccess, .isError, .isEmpty
  - NetworkStateController — single component handles all four states, injected with a retry closure and success view
 
-### RateThrottler (RateThrottler.swift)
+## RateThrottler (RateThrottler.swift)
 
  - A Swift actor that enforces minimum intervals between API requests. Reads delay from APIConfig — 3.3s for demo keys, 0.3s for premium. Prevents rate-limit errors without any external dependency.
  ```
@@ -70,7 +69,7 @@ swiftactor RateThrottler {
  - manualRefresh() — checks time elapsed since last manual refresh against the same interval as the throttler before allowing a pull-to-refresh to fire
 
 
-### UI Patterns
+## UI Patterns
 
  - PolymorphicStyle (PolymorphicStyle.swift)
  - A single view component that detects content type at runtime and applies appropriate styling automatically.
@@ -87,7 +86,7 @@ swiftFeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
 }
 ```
 
-### ActionButton + PrimaryButton
+## ActionButton + PrimaryButton
 
  - Two button families — action and primary — each with tap animation, spring scale effect, neon glow shadow on press, and selected state. Both use PolymorphicStyle internally so they accept any content type through the same interface.
  - Navigation variants (ActionNavigationButton, PrimaryNavigationButton) follow the same API with a destination view instead of an action closure.
@@ -98,13 +97,13 @@ swiftFeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
  - Sizing Protocol (CoinDetails+Sizing.swift)
  - A protocol-based responsive layout system. CoinDetailsView picks between RegularSizing and CompactSizing based on horizontalSizeClass. New size classes can be added by conforming to Sizing without touching view layout code.
 
-### Skeleton Loading
+## Skeleton Loading
 
  - Three-layer skeleton system: LoadingStateView → ContentSkeletonView → SkeletonFlashView. The flash animates using .blendMode(.destinationOut) with .compositingGroup() — cutting a moving light shape through the skeleton rather than overlaying it. Sizes are driven by the content size passed in, making the skeleton proportionally accurate to the actual content.
 
-### Planned Optimizations
+# Planned Optimizations
 
- -# Ghostframe Strategy
+ ### Ghostframe Strategy
  -
  -- Designed to solve request flooding during fast scrolling. The approach:
 
@@ -114,7 +113,7 @@ swiftFeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
 
  --  The re-render delay is intentional, not artificial latency — it matches the actual fetch time and doubles as a UX signal that data is updating, preventing users from mistaking a state change for a UI glitch.
      
- -# 3-Page Sliding Window Prefetch
+ ### 3-Page Sliding Window Prefetch
  -
  --  Inspired by how TikTok and Instagram Reels handle video buffering. The approach:
 
@@ -125,7 +124,7 @@ swiftFeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
 
  -- This gives zero visible latency on forward navigation, absolute memory control (locked at 60 items maximum), and ties the network fetch to proven user intent (the swipe gesture) rather than speculative prefetching.
 
-### Performance (Real Device — iPad 10th Gen, A14 Bionic)
+## Performance (Real Device — iPad 10th Gen, A14 Bionic)
 
  - Measured via Xcode Instruments. Idle figures taken after initial load with no active network requests.
  - State Memory Idle: 12MB
