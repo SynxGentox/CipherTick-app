@@ -4,7 +4,15 @@ A crypto market tracker built with engineering taste. Live prices, market data, 
 
 ---
 
-## What it does
+# Performance (Real Device — iPad 10th Gen, A14 Bionic)
+
+ - Measured via Xcode Instruments. Idle figures taken after initial load with no active network requests.
+ - State Memory Idle: ~32MB
+ - Active (fetching + rendering): ~38MB, Energy: Low, CPU: 0% Ideal
+
+---
+
+# What it does
 
  - Live cryptocurrency prices, market cap, 24h change, highs and lows
  - Coin detail view with full market data
@@ -124,15 +132,17 @@ swiftFeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
 
    - This gives zero visible latency on forward navigation, absolute memory control (locked at 60 items maximum), and ties the network fetch to proven user intent (the swipe gesture) rather than speculative prefetching.
 
-## Performance (Real Device — iPad 10th Gen, A14 Bionic)
+ --- 
 
- - Measured via Xcode Instruments. Idle figures taken after initial load with no active network requests.
- - State Memory Idle: 12MB
- - Active (fetching + rendering): 38MB, Energy:Low, CPU: 0% ideal
-
-### Stack
+# Stack
 
 Swift · SwiftUI · async/await · Swift actors · @Observable · Clean Architecture · Protocol-based DI · CoinGecko API
 
+---
+
+# Screenshots
+
+<img src="CipherTick app/Assets/dashboard.png" width="250"> 
+<img src="CipherTick app/Assets/history.png" width="250">
 
 
