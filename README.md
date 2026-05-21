@@ -142,7 +142,7 @@ Swift · SwiftUI · async/await · Swift actors · @Observable · Clean Architec
 
 # Screenshots
 
-<img src="CipherTick app/Assets/dashboard.png" width="250"> 
-<img src="CipherTick app/Assets/history.png" width="250">
+<img src="CipherTick app/Assets/cpu.png" width="250"> 
+<img src="CipherTick app/Assets/memory.png" width="250">
 
 
