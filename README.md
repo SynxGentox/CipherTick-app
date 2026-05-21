@@ -104,25 +104,25 @@ swiftFeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
 # Planned Optimizations
 
  ### Ghostframe Strategy
- -
- -- Designed to solve request flooding during fast scrolling. The approach:
 
- --  Only cells currently on screen fetch live data
- --  When a cell leaves the viewport, its fetch is paused and its last known state is cached
- --  When it returns, the cached "ghost" frame renders immediately, then live fetching resumes after a short delay — creating the illusion of continuous refresh without redundant API calls
+   - Designed to solve request flooding during fast scrolling. The approach:
 
- --  The re-render delay is intentional, not artificial latency — it matches the actual fetch time and doubles as a UX signal that data is updating, preventing users from mistaking a state change for a UI glitch.
+   -  Only cells currently on screen fetch live data
+   -  When a cell leaves the viewport, its fetch is paused and its last known state is cached
+   -  When it returns, the cached "ghost" frame renders immediately, then live fetching resumes after a short delay — creating the illusion of continuous refresh without redundant API calls
+
+   -  The re-render delay is intentional, not artificial latency — it matches the actual fetch time and doubles as a UX signal that data is updating, preventing users from mistaking a state change for a UI glitch.
      
  ### 3-Page Sliding Window Prefetch
- -
- --  Inspired by how TikTok and Instagram Reels handle video buffering. The approach:
+ 
+   -  Inspired by how TikTok and Instagram Reels handle video buffering. The approach:
 
- --  Memory holds exactly 3 pages at any time: previous, current, next
- --  On page transition, a 250ms spatial animation plays
- --  During that animation window, the next-next page prefetches in the background
- --  On transition complete, the previous page is cleared from memory
+   -  Memory holds exactly 3 pages at any time: previous, current, next
+   -  On page transition, a 250ms spatial animation plays
+   -  During that animation window, the next-next page prefetches in the background
+   -  On transition complete, the previous page is cleared from memory
 
- -- This gives zero visible latency on forward navigation, absolute memory control (locked at 60 items maximum), and ties the network fetch to proven user intent (the swipe gesture) rather than speculative prefetching.
+   - This gives zero visible latency on forward navigation, absolute memory control (locked at 60 items maximum), and ties the network fetch to proven user intent (the swipe gesture) rather than speculative prefetching.
 
 ## Performance (Real Device — iPad 10th Gen, A14 Bionic)
 
