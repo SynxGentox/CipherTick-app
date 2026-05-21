@@ -88,47 +88,51 @@ swiftFeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
 ```
 
 ### ActionButton + PrimaryButton
+
  - Two button families — action and primary — each with tap animation, spring scale effect, neon glow shadow on press, and selected state. Both use PolymorphicStyle internally so they accept any content type through the same interface.
  - Navigation variants (ActionNavigationButton, PrimaryNavigationButton) follow the same API with a destination view instead of an action closure.
- - 
  - AppRoute (AppRoute.swift)
  - Type-safe navigation routing via NavigationStack value-based navigation. All routes are cases of a single AppRoute enum, eliminating stringly-typed navigation entirely.
- - 
  - if View Extension (ifView.swift)
  - A @ViewBuilder extension on View that allows conditional modifier application inline without breaking the view builder chain.
- - 
  - Sizing Protocol (CoinDetails+Sizing.swift)
  - A protocol-based responsive layout system. CoinDetailsView picks between RegularSizing and CompactSizing based on horizontalSizeClass. New size classes can be added by conforming to Sizing without touching view layout code.
 
 ### Skeleton Loading
+
  - Three-layer skeleton system: LoadingStateView → ContentSkeletonView → SkeletonFlashView. The flash animates using .blendMode(.destinationOut) with .compositingGroup() — cutting a moving light shape through the skeleton rather than overlaying it. Sizes are driven by the content size passed in, making the skeleton proportionally accurate to the actual content.
 
 ### Planned Optimizations
- - Ghostframe Strategy
- - - Designed to solve request flooding during fast scrolling. The approach:
 
- - -  Only cells currently on screen fetch live data
- - -  When a cell leaves the viewport, its fetch is paused and its last known state is cached
- - -  When it returns, the cached "ghost" frame renders immediately, then live fetching resumes after a short delay — creating the illusion of continuous refresh without redundant API calls
+ -# Ghostframe Strategy
+ -
+ -- Designed to solve request flooding during fast scrolling. The approach:
 
- - -  The re-render delay is intentional, not artificial latency — it matches the actual fetch time and doubles as a UX signal that data is updating, preventing users from mistaking a state change for a UI glitch.
-   -  
- - 3-Page Sliding Window Prefetch
- - -  Inspired by how TikTok and Instagram Reels handle video buffering. The approach:
+ --  Only cells currently on screen fetch live data
+ --  When a cell leaves the viewport, its fetch is paused and its last known state is cached
+ --  When it returns, the cached "ghost" frame renders immediately, then live fetching resumes after a short delay — creating the illusion of continuous refresh without redundant API calls
 
- - -  Memory holds exactly 3 pages at any time: previous, current, next
- - -  On page transition, a 250ms spatial animation plays
- - -  During that animation window, the next-next page prefetches in the background
- - -  On transition complete, the previous page is cleared from memory
+ --  The re-render delay is intentional, not artificial latency — it matches the actual fetch time and doubles as a UX signal that data is updating, preventing users from mistaking a state change for a UI glitch.
+     
+ -# 3-Page Sliding Window Prefetch
+ -
+ --  Inspired by how TikTok and Instagram Reels handle video buffering. The approach:
 
-- - This gives zero visible latency on forward navigation, absolute memory control (locked at 60 items maximum), and ties the network fetch to proven user intent (the swipe gesture) rather than speculative prefetching.
+ --  Memory holds exactly 3 pages at any time: previous, current, next
+ --  On page transition, a 250ms spatial animation plays
+ --  During that animation window, the next-next page prefetches in the background
+ --  On transition complete, the previous page is cleared from memory
+
+ -- This gives zero visible latency on forward navigation, absolute memory control (locked at 60 items maximum), and ties the network fetch to proven user intent (the swipe gesture) rather than speculative prefetching.
 
 ### Performance (Real Device — iPad 10th Gen, A14 Bionic)
+
  - Measured via Xcode Instruments. Idle figures taken after initial load with no active network requests.
  - State Memory Idle: 12MB
  - Active (fetching + rendering): 38MB, Energy:Low, CPU: 0% ideal
 
 ### Stack
+
 Swift · SwiftUI · async/await · Swift actors · @Observable · Clean Architecture · Protocol-based DI · CoinGecko API
 
 
