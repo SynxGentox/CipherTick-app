@@ -124,8 +124,9 @@ swiftFeatureEnabler(flag: APIConfig.shared.isEnabledCoin) {
 - - This gives zero visible latency on forward navigation, absolute memory control (locked at 60 items maximum), and ties the network fetch to proven user intent (the swipe gesture) rather than speculative prefetching.
 
 ### Performance (Real Device — iPad 10th Gen, A14 Bionic)
-Measured via Xcode Instruments. Idle figures taken after initial load with no active network requests.
-StateMemoryIdle12 MBActive (fetching + rendering)38 MBEnergyLowCPU at idle0%
+ - Measured via Xcode Instruments. Idle figures taken after initial load with no active network requests.
+ - State Memory Idle: 12MB
+ - Active (fetching + rendering): 38MB, Energy:Low, CPU: 0% ideal
 
 ### Stack
 Swift · SwiftUI · async/await · Swift actors · @Observable · Clean Architecture · Protocol-based DI · CoinGecko API
