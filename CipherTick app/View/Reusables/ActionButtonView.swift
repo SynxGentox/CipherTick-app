@@ -43,7 +43,7 @@ struct ActionNavigationButton<Destination: View>: View {
     var body: some View {
         VStack {
             NavigationLink(value: id) {
-                // Got PolymorphiStyle.swift to check what button should display
+                // Go to PolymorphiStyle.swift to check what button should display
                 PolymorphicStyle(
                     isImage: buttonDisplay,
                     infinite: infinite,
